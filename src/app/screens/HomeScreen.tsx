@@ -49,7 +49,29 @@ function HomeScreen() {
 
   return (
     <NativeBaseProvider>
-      <Button>OK</Button>
+      <Center>
+        <Text>Movie Name</Text>
+        <Box>
+          {data.map(item => (
+            <HStack space={10} justifyContent="center">
+              <Text>Helllo</Text>
+              <Button>OK</Button>
+              <Text>Movie Issues Year {item?.releaseYear}</Text>
+            </HStack>
+          ))}
+        </Box>
+        <Button onPress={myCustomShare}>share</Button>
+        <FlatList
+          data={datas}
+          style={styles.list}
+          numColumns={3}
+          keyExtractor={e => e}
+          onEndReached={fetchMore}
+          renderItem={item => (
+            <Image source={{uri: BASE_URL + item}} style={styles.item} />
+          )}
+        />
+      </Center>
     </NativeBaseProvider>
   );
 }
