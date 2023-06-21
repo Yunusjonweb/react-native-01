@@ -1,0 +1,17 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/DancingScript-VariableFont_wght.ttf",
+      "sha1": "f6ef1641594430e8367d9c26819a900c879b8f35"
+    },
+    {
+      "path": "src/assets/fonts/OFL.txt",
+      "sha1": "55cd46bc813c288ff885f6fe65104ff4e7ebeb39"
+    },
+    {
+      "path": "src/assets/fonts/README.txt",
+      "sha1": "c26303553d2841dad8023a6eeabb64b8ba2deda6"
+    }
+  ]
+}
