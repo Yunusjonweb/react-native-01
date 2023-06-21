@@ -8,24 +8,12 @@ import {
   Center,
   Button,
 } from 'native-base';
-import {FlatList, Image, StyleSheet} from 'react-native';
-
-const BASE_URL = 'https://source.unsplash.com/random?sig=';
+import Loader from '../Loader/Loader';
 
 function HomeScreen() {
   const [data, setData] = React.useState([]);
-  const [datas, setDatas] = React.useState([]);
+  const [loader, setLoader] = React.useState(false);
 
-  React.useEffect(() => {
-    fetchMore();
-  }, []);
-
-  const fetchMore = () => {
-    setDatas(prevState => [
-      ...prevState,
-      ...Array.from({length: 20}).map((_, i) => i + 1 + prevState.length),
-    ]);
-  };
   React.useEffect(() => {
     fetch('https://reactnative.dev/movies.json')
       .then(response => response.json())
@@ -52,40 +40,22 @@ function HomeScreen() {
       <Center>
         <Text>Movie Name</Text>
         <Box>
-          {data.map(item => (
-            <HStack space={10} justifyContent="center">
-              <Text>Helllo</Text>
-              <Button>OK</Button>
-              <Text>Movie Issues Year {item?.releaseYear}</Text>
-            </HStack>
-          ))}
+          {data.length ? (
+            data.map(item => (
+              <HStack space={10} justifyContent="center" key={item.id}>
+                <Text>Helllo</Text>
+                <Button>OK</Button>
+                <Text>Movie Issues Year {item?.releaseYear}</Text>
+              </HStack>
+            ))
+          ) : (
+            <Loader />
+          )}
         </Box>
         <Button onPress={myCustomShare}>share</Button>
-        <FlatList
-          data={datas}
-          style={styles.list}
-          numColumns={3}
-          keyExtractor={e => e}
-          onEndReached={fetchMore}
-          renderItem={item => (
-            <Image source={{uri: BASE_URL + item}} style={styles.item} />
-          )}
-        />
       </Center>
     </NativeBaseProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  list: {
-    width: '100%',
-    backgroundColor: 'black',
-  },
-  item: {
-    aspectRatio: 1,
-    width: '100%',
-    flex: 1,
-  },
-});
 
 export default HomeScreen;
