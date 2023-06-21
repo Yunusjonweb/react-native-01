@@ -55,7 +55,7 @@ function HomeScreen() {
           {data.map(item => (
             <HStack space={10} justifyContent="center">
               <Text>Movie Name:{item?.title}</Text>
-              <Text>Movie Releas Year {item?.releaseYear}</Text>
+              <Text>Movie Issues Year {item?.releaseYear}</Text>
             </HStack>
           ))}
         </Box>
